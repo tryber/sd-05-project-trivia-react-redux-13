@@ -1,21 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export class Game extends Component {
   render() {
-    return (
-      <div>
-        
-      </div>
-    )
+    return <div></div>;
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
+const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = {
-  
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+const mapDispatchToProps = {};
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
