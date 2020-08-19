@@ -31,7 +31,7 @@ const failedTrivia = (error) => ({
 
 export function fetchTrivia() {
   return (dispatch) => {
-    dispatch(requestTrivia())
+    dispatch(requestTrivia());
     return fetchToken().then(
       (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
         .then((r) => dispatch(receivedTrivia(r.results)))
