@@ -1,6 +1,7 @@
-const MD5 = require("crypto-js/md5")
+const MD5 = require('crypto-js/md5');
 
 const email = {};
 
-export const cryptoEmail = console.log(MD5(email).toString());
+const cryptoEmail = console.log(MD5(email).toString());
 
+export default cryptoEmail;

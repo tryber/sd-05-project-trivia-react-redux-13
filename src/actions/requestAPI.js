@@ -1,4 +1,4 @@
-import { fetchToken } from './requestToken';
+import fetchToken from './requestToken';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
@@ -30,9 +30,12 @@ const failedTrivia = (error) => ({
 // }
 
 export function fetchTrivia() {
-  return fetchToken().then(
-    (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
-      .then((data) => dispatch(receivedTrivia(data.results)))
-      .then((error) => dispatch(failedTrivia(error)))
-  )
-};
+  return (dispatch) => {
+    dispatch(requestTrivia())
+    return fetchToken().then(
+      (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
+        .then((r) => dispatch(receivedTrivia(r.results)))
+        .then((error) => dispatch(failedTrivia(error))),
+    );
+  };
+}
