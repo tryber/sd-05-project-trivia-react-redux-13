@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-export class Timer extends Component {
+export default class Timer extends Component {
   render() {
     return <div />;
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-export class Ranking extends Component {
+export default class Ranking extends Component {
   render() {
     return <div />;
   }
