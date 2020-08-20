@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 
 const MD5 = require('crypto-js/md5');
+
 const email = [{}];
 export const cryptoEmail = console.log(MD5(email).toString());
 
@@ -25,7 +26,7 @@ export default class Login extends Component {
   }
 
   requests() {
-    email.push(this.state.email)
+    email.push(this.state.email);
   }
 
   handleChange(event) {

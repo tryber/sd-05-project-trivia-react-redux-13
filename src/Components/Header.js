@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { fetchGravatar } from '../actions/requestGravatar.js';
-import { connect } from 'react-redux';
+// import { fetchGravatar } from '../actions/requestGravatar.js';
+// import { connect } from 'react-redux';
 
-class Header extends Component {
+export class Header extends Component {
   componentDidMoutn() {
     const { fetchGravatar } = this.props;
     fetchGravatar();
