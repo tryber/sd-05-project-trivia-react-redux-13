@@ -21,10 +21,9 @@ const failedGravatar = (error) => ({
 export function fetchGravatar() {
   return (dispatch) => {
     dispatch(requestGravatar());
-    return fetch(`https://www.gravatar.com/avatar/${cryptoEmail}`)
-      .then(
-        (results) => dispatch(receivedGravatar(results)),
-        (error) => dispatch(failedGravatar(error)),
-      );
+    return fetch(`https://www.gravatar.com/avatar/${cryptoEmail}`).then(
+      (results) => dispatch(receivedGravatar(results)),
+      (error) => dispatch(failedGravatar(error)),
+    );
   };
 }
