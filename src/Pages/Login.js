@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom';
 
 // import { connect } from 'react-redux';
 
+const MD5 = require('crypto-js/md5');
+const email = [{}];
+export const cryptoEmail = console.log(MD5(email).toString());
+
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,11 +22,12 @@ export default class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.requests = this.requests.bind(this);
   }
 
-  // requests = () => {
-
-  // }
+  requests() {
+    email.push(this.state.email)
+  };
 
   handleChange(event) {
     this.setState({
@@ -63,7 +69,7 @@ export default class Login extends Component {
             <button
               data-testid="btn-play"
               disabled={this.state.disabled}
-            // onClick={this.requests}
+            onClick={this.requests}
             >JOGAR!
             </button>
           </Link>
