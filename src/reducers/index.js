@@ -26,5 +26,7 @@ export default function gravatarReducer(state = INITIAL_STATE, action) {
         ...state,
         error: action.error,
       };
+    default:
+      return state;
   }
 }

@@ -8,25 +8,19 @@ class Header extends Component {
     fetchGravatar();
   }
   render() {
-    const { profilePicture, name, score } = this.props.gravatarReducer;
-    return <img src={`${profilePicture}`} />;
+    const { profilePicture } = this.props;
+    return <img src={`${profilePicture}`} alt="" />;
   }
 }
 
-const mapStateToProps = (state) => ({
-  gravatarReducer:{
-    name: state.gravatarReducer.name,
-    score: state.gravatarReducer.score,
-    profilePicture: state.gravatarReducer.profilePicture,
-  }
-});
+// // const mapStateToProps = (state) => ({
+// //   gravatarReducer: {
+// //     name: state.gravatarReducer.name,
+// //   }
+// // });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchGravatar: (result) => dispatch(fetchGravatar(result)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   fetchGravatar: (result) => dispatch(fetchGravatar(result)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
-
-// A imagem do perfil vinda do Gravatar em um elemento que deve possuir o atributo data-testid com o valor header-profile-picture
-// O nome da pessoa em um elemento que deve possuir o atributo data-testid com o valor header-player-name
-// O placar zerado em um elemento que deve possuir o atributo data-testid com o valor header-score
+// export default connect(mapStateToProps, mapDispatchToProps)(Header);
