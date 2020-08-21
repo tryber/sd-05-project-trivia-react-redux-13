@@ -7,18 +7,6 @@
   pointer-events: none;
 }
 
-.green-button {
-  background-color: #86D660;
-  height: 70px;
-  width: 374px;
-}
-
-.gray-button {
-  background-color: #F0F0F0;
-  height: 70px;
-  width: 374px;
-}
-
 .red-border {
   border: 1px solid red;
 }

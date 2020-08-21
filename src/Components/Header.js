@@ -24,13 +24,3 @@ import React, { Component } from 'react';
 // // });
 
 // // export default connect(mapStateToProps, mapDispatchToProps)(Header);
-
-export default class Header extends Component {
-  render() {
-    return (
-      <div>
-        <p>Testando Header, apagar depois</p>
-      </div>
-    )
-  }
-}
