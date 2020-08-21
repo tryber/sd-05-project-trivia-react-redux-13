@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { fetchToken } from '../actions/requestToken.js';
-// import { fetchGravatar } from '../actions/requestGravatar.js';
-// import { fetchTrivia } from '../actions/requestAPI.js';
-
-// import { connect } from 'react-redux';
 
 const MD5 = require('crypto-js/md5');
 
-const email = [{}];
-export const cryptoEmail = console.log(MD5(email).toString());
+const email = [];
+export const cryptoEmail = MD5(email).toString();
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -56,7 +51,6 @@ export default class Login extends Component {
             id="email"
             data-testid="input-gravatar-email"
           />
-
           <label htmlFor="name">Nome do Jogador: </label>
           <input
             value={this.state.name}
@@ -65,7 +59,6 @@ export default class Login extends Component {
             id="name"
             data-testid="input-player-name"
           />
-
           <Link to="/game">
             <button data-testid="btn-play" disabled={this.state.disabled} onClick={this.requests}>
               JOGAR!
@@ -77,8 +70,4 @@ export default class Login extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({});
-
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

@@ -1,4 +1,4 @@
-import fetchToken from './requestToken';
+import fetchToken from '../services/requestToken';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
@@ -32,7 +32,7 @@ const failedTrivia = (error) => ({
 export function fetchTrivia() {
   return (dispatch) => {
     dispatch(requestTrivia());
-    return fetchToken().then(
+    return fetchToken.then(
       (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
         .then((r) => dispatch(receivedTrivia(r.results)))
         .then((error) => dispatch(failedTrivia(error))),
