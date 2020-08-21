@@ -1,4 +1,4 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 // // import { fetchGravatar } from '../actions/requestGravatar.js';
 // // import { connect } from 'react-redux';
 
@@ -24,3 +24,13 @@
 // // });
 
 // // export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default class Header extends Component {
+  render() {
+    return (
+      <div>
+        <p>Testando Header, apagar depois</p>
+      </div>
+    )
+  }
+}

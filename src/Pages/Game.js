@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 
 export default class Game extends Component {
   render() {
-    return <div />;
+    return (
+      <Link to="/feedback">Feedback</Link> // testando
+    )
   }
 }
 
