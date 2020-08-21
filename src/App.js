@@ -1,11 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Feedback from './Pages/Feedback';
 import Game from './Pages/Game';
 import Login from './Pages/Login';
 import Settings from './Pages/Settings';
 import Ranking from './Pages/Ranking';
-import { Provider } from 'react-redux';
 import store from './redux/store/index';
 import './App.css';
 

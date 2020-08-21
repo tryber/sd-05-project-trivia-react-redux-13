@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 const MD5 = require('crypto-js/md5');
 
 const email = [];
@@ -21,7 +22,6 @@ class Login extends Component {
 
   requests() {
     email.push(this.state.email);
-    console.log(cryptoEmail)
   }
 
   handleChange(event) {
