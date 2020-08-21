@@ -1,4 +1,4 @@
-import fetchToken from '../services/requestToken';
+import fetchToken from '../../services/requestToken';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
@@ -18,6 +18,17 @@ const failedTrivia = (error) => ({
   error,
 });
 
+export function fetchTrivia() {
+  return (dispatch) => {
+    dispatch(requestTrivia());
+    return fetch('https://opentdb.com/api_token.php?command=request').then(
+      (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
+        .then((r) => dispatch(receivedTrivia(r.results)))
+        .then((error) => dispatch(failedTrivia(error))),
+    );
+  };
+}
+
 // export function fetchTrivia(parameter) {
 //   return (dispatch) => {
 //     dispatch(requestTrivia());
@@ -28,14 +39,3 @@ const failedTrivia = (error) => ({
 //       );
 //   };
 // }
-
-export function fetchTrivia() {
-  return (dispatch) => {
-    dispatch(requestTrivia());
-    return fetchToken.then(
-      (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
-        .then((r) => dispatch(receivedTrivia(r.results)))
-        .then((error) => dispatch(failedTrivia(error))),
-    );
-  };
-}
