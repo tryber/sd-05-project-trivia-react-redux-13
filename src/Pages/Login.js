@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { fetchToken } from '../actions/requestToken.js';
-// import { fetchGravatar } from '../actions/requestGravatar.js';
-// import { fetchTrivia } from '../actions/requestAPI.js';
-
-// import { connect } from 'react-redux';
-
+import { connect } from 'react-redux';
+import { fetchGravatar } from '../redux/actions/requestGravatar';
 const MD5 = require('crypto-js/md5');
 
 const email = [{}];
-export const cryptoEmail = console.log(MD5(email).toString());
+export const cryptoEmail = MD5(email).toString();
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -25,8 +21,11 @@ export default class Login extends Component {
     this.requests = this.requests.bind(this);
   }
 
+
   requests() {
     email.push(this.state.email);
+    const { fetchAPI } = this.props;
+    fetchAPI()
   }
 
   handleChange(event) {
@@ -77,8 +76,13 @@ export default class Login extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({});
 
-// const mapDispatchToProps = {};
+const mapStateToProps = (state) => ({
+  profilePicture: state.gravatarReducer.profilePicture
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch) => ({
+  fetchAPI: (result) => dispatch(fetchGravatar(result)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

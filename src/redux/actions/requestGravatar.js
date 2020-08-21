@@ -1,4 +1,4 @@
-import cryptoEmail from '../cryptoJS/index';
+import { cryptoEmail } from '../../Pages/Login';
 
 export const REQUEST_GRAVATAR = 'REQUEST_GRAVATAR';
 export const RECEIVED_GRAVATAR = 'RECEIVED_GRAVATAR';

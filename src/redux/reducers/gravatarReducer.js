@@ -3,7 +3,7 @@ import { REQUEST_GRAVATAR, RECEIVED_GRAVATAR, FAILED_GRAVATAR } from '../actions
 const INITIAL_STATE = [
   {
     isFetching: false,
-    profilePicture: [],
+    profilePicture: '',
     error: '',
   },
 ];
@@ -18,7 +18,7 @@ export default function gravatarReducer(state = INITIAL_STATE, action) {
     case RECEIVED_GRAVATAR:
       return {
         ...state,
-        profilePicture: [...state, action.data],
+        profilePicture: action.data,
         isFetching: false,
       };
     case FAILED_GRAVATAR:
