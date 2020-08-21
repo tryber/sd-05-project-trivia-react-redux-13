@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { fetchGravatar } from '../redux/actions/requestGravatar';
 const MD5 = require('crypto-js/md5');
 
-const email = [{}];
+const email = [];
 export const cryptoEmail = MD5(email).toString();
 
 class Login extends Component {
@@ -21,11 +19,9 @@ class Login extends Component {
     this.requests = this.requests.bind(this);
   }
 
-
   requests() {
     email.push(this.state.email);
-    const { fetchAPI } = this.props;
-    fetchAPI()
+    console.log(cryptoEmail)
   }
 
   handleChange(event) {
@@ -55,7 +51,6 @@ class Login extends Component {
             id="email"
             data-testid="input-gravatar-email"
           />
-
           <label htmlFor="name">Nome do Jogador: </label>
           <input
             value={this.state.name}
@@ -64,7 +59,6 @@ class Login extends Component {
             id="name"
             data-testid="input-player-name"
           />
-
           <Link to="/game">
             <button data-testid="btn-play" disabled={this.state.disabled} onClick={this.requests}>
               JOGAR!
@@ -76,13 +70,4 @@ class Login extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  profilePicture: state.gravatarReducer.profilePicture
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchAPI: (result) => dispatch(fetchGravatar(result)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
