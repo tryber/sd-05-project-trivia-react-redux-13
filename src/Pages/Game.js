@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Timer from '../Components/Timer';
+import Header from '../Components/Header';
 // import { connect } from 'react-redux';
 
 export default class Game extends Component {
   render() {
     return (
-      <Link to="/feedback">Feedback</Link> // testando
+      <div className="main">
+        <Header />
+        <div className="question-timer">
+          <p>
+            Pergunta
+          </p>
+          <Timer />
+        </div>
+        <div className="alternatives">
+          <button className="ans-btn">Alternativa 1</button>
+          <button className="ans-btn">Alternativa 2</button>
+        </div>
+      </div>
     )
   }
 }

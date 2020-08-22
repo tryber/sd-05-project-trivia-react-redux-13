@@ -4,7 +4,12 @@ import { cryptoEmail } from '../Pages/Login';
 class Header extends Component {
   render() {
     return (
-      <img src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" />
+      <div className="header">
+        <img src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" className="avt-img"/>
+        <h2>Jogador: {this.props.name}</h2>
+
+        <h2>Pontos: {this.props.score}</h2>
+      </div>
     );
   }
 }

@@ -19,7 +19,7 @@ export default class Feedback extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <Header />
         <p data-testid="feedback-text">{this.feedbackMessage}</p>
         <p data-testid="feedback-total-score">Score: {this.props.score}</p>
