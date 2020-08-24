@@ -9,15 +9,22 @@ export default class Game extends Component {
     return (
       <div className="main">
         <Header />
-        <div className="question-timer">
-          <p>
-            Pergunta
-          </p>
+        <div className="left">
+          <div className="question">
+            <p data-testid="question-category"></p>
+            <p data-testid="question-text">
+              Pergunta
+            </p>
+            
+          </div>
           <Timer />
         </div>
         <div className="alternatives">
-          <button className="ans-btn">Alternativa 1</button>
-          <button className="ans-btn">Alternativa 2</button>
+          <button className="ans-btn" data-test-id="correct-answer">Resposta Certa</button>
+          <button className="ans-btn" data-test-id="wrong-answer">Resposta Errada</button>
+        </div>
+        <div>
+          <button>Voltar ao Início</button>
         </div>
       </div>
     )

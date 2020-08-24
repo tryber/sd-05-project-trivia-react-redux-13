@@ -4,11 +4,11 @@ import { cryptoEmail } from '../Pages/Login';
 class Header extends Component {
   render() {
     return (
-      <div className="header">
+      <div className="header" data-testid="header-player-name">
         <img src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" className="avt-img"/>
         <h2>Jogador: {this.props.name}</h2>
 
-        <h2>Pontos: {this.props.score}</h2>
+        <h2 data-testid="header-score">Pontos: {this.props.score}</h2>
       </div>
     );
   }
