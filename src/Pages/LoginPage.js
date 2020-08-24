@@ -31,15 +31,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 LoginPage.propType = {
-  fetchAPI: propType.shape({
-    fetchAPI: propType.func,
-  }).isRequired,
-  fetchKey: propType.shape({
-    fetchKey: propType.func,
-  }).isRequired,
-  token: propType.shape({
-    token: propType.string,
-  }).isRequired,
+  fetchAPI: propType.func.isRequired,
+  fetchKey: propType.func.isRequired,
+  token: propType.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
