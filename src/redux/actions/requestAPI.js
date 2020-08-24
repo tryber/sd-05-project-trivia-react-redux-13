@@ -1,4 +1,4 @@
-import { getToken } from '../../services/requests';
+import getToken from '../../services/requests';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
@@ -13,19 +13,19 @@ const requestTrivia = () => ({ type: REQUEST_TRIVIA });
 const receivedTrivia = (data) => ({ type: RECEIVED_TRIVIA, data });
 
 export function fetchToken() {
-  return async dispatch => {
-    dispatch(requestToken())
+  return async (dispatch) => {
+    dispatch(requestToken());
     const data = await getToken();
     return dispatch(receivedToken(data));
   };
 }
 
 export function fetchTrivia(token) {
-  return async dispatch => {
-    dispatch(requestTrivia())
+  return async (dispatch) => {
+    dispatch(requestTrivia());
     const data = await fetch(`https://opentdb.com/api.php?amount=5&tokn=${token}`);
     const response = data.json();
-    const results = Promise.resolve(response)
-    return results.then(event => dispatch(receivedTrivia(event.results)));
+    const results = Promise.resolve(response);
+    return results.then((event) => dispatch(receivedTrivia(event.results)));
   };
 }
