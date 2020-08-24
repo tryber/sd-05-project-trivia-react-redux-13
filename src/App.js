@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Feedback from './Pages/Feedback';
 import Game from './Pages/Game';
-import Login from './Pages/Login';
+import Login from './Pages/LoginPage';
 import Settings from './Pages/Settings';
 import Ranking from './Pages/Ranking';
 import store from './redux/store/index';

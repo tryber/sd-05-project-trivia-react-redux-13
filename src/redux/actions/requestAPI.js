@@ -1,41 +1,31 @@
-import fetchToken from '../services/requestToken';
+import getToken from '../../services/requests';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
 export const FAILED_TRIVIA = 'FAILED_TRIVIA';
+export const REQUEST_TOKEN = 'REQUEST_TOKEN';
+export const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
 
-const requestTrivia = () => ({
-  type: REQUEST_TRIVIA,
-});
+const requestToken = () => ({ type: REQUEST_TOKEN });
+const receivedToken = (token) => ({ type: RECEIVED_TOKEN, token });
 
-const receivedTrivia = (data) => ({
-  type: RECEIVED_TRIVIA,
-  data,
-});
+const requestTrivia = () => ({ type: REQUEST_TRIVIA });
+const receivedTrivia = (data) => ({ type: RECEIVED_TRIVIA, data });
 
-const failedTrivia = (error) => ({
-  type: FAILED_TRIVIA,
-  error,
-});
+export function fetchToken() {
+  return async (dispatch) => {
+    dispatch(requestToken());
+    const data = await getToken();
+    return dispatch(receivedToken(data));
+  };
+}
 
-// export function fetchTrivia(parameter) {
-//   return (dispatch) => {
-//     dispatch(requestTrivia());
-//     return fetch(`https://opentdb.com/api.php?amount=5&token=${parameter}`)
-//       .then(
-//         (data) => dispatch(receivedTrivia(data)),
-//         (error) => dispatch(failedTrivia(error)),
-//       );
-//   };
-// }
-
-export function fetchTrivia() {
-  return (dispatch) => {
+export function fetchTrivia(token) {
+  return async (dispatch) => {
     dispatch(requestTrivia());
-    return fetchToken.then(
-      (data) => fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
-        .then((r) => dispatch(receivedTrivia(r.results)))
-        .then((error) => dispatch(failedTrivia(error))),
-    );
+    const data = await fetch(`https://opentdb.com/api.php?amount=5&tokn=${token}`);
+    const response = data.json();
+    const results = Promise.resolve(response);
+    return results.then((event) => dispatch(receivedTrivia(event.results)));
   };
 }
