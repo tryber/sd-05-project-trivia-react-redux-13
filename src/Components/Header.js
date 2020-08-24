@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { cryptoEmail } from '../Pages/Login';
+import { cryptoEmail } from '../Components/Login';
 
 class Header extends Component {
   render() {
