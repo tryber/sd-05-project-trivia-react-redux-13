@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchToken, fetchTrivia } from '../redux/actions/requestAPI';
-import propType from 'prop-types';
 import Login from '../Components/Login';
 
 class LoginPage extends Component {
@@ -30,12 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-LoginPage.propType = {
-  props: propType.shape({
-    fetchToken: propType.func.isRequired,
-    fetchTrivia: propType.func.isRequired,
-    fetchAPI: propType.string.isRequired,
-  })
+LoginPage.propTypes = {
+  fetchAPI: propTypes.func.isRequired,
+  fetchKey: propTypes.func.isRequired,
+  token: propTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
