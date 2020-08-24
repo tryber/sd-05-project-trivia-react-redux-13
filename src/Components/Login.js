@@ -18,6 +18,7 @@ class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.requests = this.requests.bind(this);
+
   }
 
   requests() {
