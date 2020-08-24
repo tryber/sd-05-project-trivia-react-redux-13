@@ -38,7 +38,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <Link to="/settings" data-testid="btn-settings">
           Settings
         </Link>
