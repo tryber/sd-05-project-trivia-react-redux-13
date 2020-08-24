@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propType from 'prop-types';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchToken, fetchTrivia } from '../redux/actions/requestAPI';
 import Login from '../Components/Login';
@@ -30,10 +30,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-LoginPage.propType = {
-  fetchAPI: propType.func.isRequired,
-  fetchKey: propType.func.isRequired,
-  token: propType.string.isRequired,
+LoginPage.propTypes = {
+  fetchAPI: propTypes.func.isRequired,
+  fetchKey: propTypes.func.isRequired,
+  token: propTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
