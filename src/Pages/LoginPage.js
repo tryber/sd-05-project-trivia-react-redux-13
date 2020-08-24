@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchToken, fetchTrivia } from '../redux/actions/requestAPI';
-import Login from '../Components/Login';
 import propType from 'prop-types';
+import Login from '../Components/Login';
 
 class LoginPage extends Component {
   componentDidMount() {
-    const { fetchToken, fetchAPI, token } = this.props;
-    fetchToken();
+    const { fetchKey, fetchAPI, token } = this.props;
+    fetchKey();
     setTimeout(() => fetchAPI(token), 2000);
   }
 
@@ -25,15 +25,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchToken: (e) => dispatch(fetchToken(e)),
+  fetchKey: (e) => dispatch(fetchToken(e)),
   fetchAPI: (e) => dispatch(fetchTrivia(e)),
 });
 
 
 LoginPage.propType = {
-  fetchToken: propType.func.isRequired,
-  fetchTrivia: propType.func.isRequired,
-  token: propType.string.isRequired,
+  props: propType.shape({
+    fetchToken: propType.func.isRequired,
+    fetchTrivia: propType.func.isRequired,
+    fetchAPI: propType.string.isRequired,
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
