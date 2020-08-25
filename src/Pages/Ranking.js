@@ -14,7 +14,7 @@ export default class Ranking extends Component {
               <p data-testid={`player-name-${index}`}>Nome: {player.name}</p>
               <p data-testid={`player-score-${index}`}>Pontuação: {player.score}</p>
             </div>
-          )
+          );
         })}
         <Link to="/">
           <button data-testid="btn-go-home">Jogar Novamente</button>
