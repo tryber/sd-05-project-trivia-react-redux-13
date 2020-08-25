@@ -26,7 +26,6 @@ input {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   background-color: #222;
   padding: 10px 15px;
-  
 }
 
 .big-btn:active {
@@ -68,7 +67,7 @@ input {
   left: 0;
 }
 
-.ans-btn { 
+.ans-btn {
   display:inline-block;
   padding: 1em 5em;
   margin: 0 0.3em 0.3em 0;
