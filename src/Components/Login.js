@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const MD5 = require('crypto-js/md5');
@@ -22,6 +23,28 @@ class Login extends Component {
 
   requests() {
     email.push(this.state.email);
+    const state = {
+      player: {
+        name: this.state.name,
+        assertions: 0,
+        score: 0,
+        gravatarEmail: this.state.email,
+      },
+      ranking: [
+        {
+          name: this.state.name,
+          score: 10,
+          picture: 'https://www.gravatar.com/avatar/any',
+        },
+        {
+          name: this.state.name,
+          score: 15,
+          picture: 'https://www.gravatar.com/avatar/any2',
+        },
+      ],
+      token: this.props.token,
+    };
+    localStorage.setItem('state', JSON.stringify(state));
   }
 
   handleChange(event) {
@@ -38,7 +61,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="main">
+      <div>
         <Link to="/settings" data-testid="btn-settings">
           Settings
         </Link>
@@ -69,5 +92,9 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  token: propTypes.string.isRequired,
+};
 
 export default Login;

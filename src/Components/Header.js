@@ -3,12 +3,13 @@ import { cryptoEmail } from '../Components/Login';
 
 class Header extends Component {
   render() {
+    const state = JSON.parse(localStorage.getItem('state'));
     return (
-      <div className="header" data-testid="header-player-name">
-        <img src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" className="avt-img"/>
-        <h2>Jogador: {this.props.name}</h2>
+      <div data-testid="header-player-name">
+        <img data-testid="header-profile-picture" src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" />
+        <h2>Jogador: {state.player.name}</h2>
 
-        <h2 data-testid="header-score">Pontos: {this.props.score}</h2>
+        <h2 data-testid="header-score">Pontos: {state.player.score}</h2>
       </div>
     );
   }
@@ -29,15 +30,6 @@ export default Header;
 //     return <img src={`${profilePicture}`} alt="" />;
 //   }
 // }
-
-// // // const mapStateToProps = (state) => ({
-// // //   gravatarReducer: {
-// // //     name: state.gravatarReducer.name,
-// // //   }
-// // // });
-
 // // const mapDispatchToProps = (dispatch) => ({
 // //   fetchGravatar: (result) => dispatch(fetchGravatar(result)),
 // // });
-
-// // export default connect(mapStateToProps, mapDispatchToProps)(Header);

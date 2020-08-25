@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Timer from '../Components/Timer';
-import Header from '../Components/Header';
-import Questions from '../Components/Questions'
 // import { connect } from 'react-redux';
+import Header from '../Components/Header';
+import Questions from '../Components/Questions';
+import Answers from '../Components/Answers';
 
-export default class Game extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidUpdate() {
-    console.log(this.props)
-  }
+class Game extends Component {
   render() {
-
     return (
-      <div className="main">
+      <div >
         <Header />
-        <div className="left">
+        <div>
           <Questions />
           <Timer />
         </div>
-        <div className="alternatives">
-          <button className="ans-btn" data-test-id="correct-answer">Resposta Certa</button>
-          <button className="ans-btn" data-test-id="wrong-answer">Resposta Errada</button>
-        </div>
         <div>
-          <button>Voltar ao Início</button>
+          <Answers />
         </div>
+        <Link to="/">
+          <button>Voltar ao Início</button>
+        </Link>
+        {/* implementar contador para pegar perguntas pelo index */}
+        <button data-testid="btn-next">Próxima pergunta</button>
+        <Link to="/feedback">
+          <button>Feedback</button>
+        </Link>
+        <Link to="/ranking">
+          <button data-testid="btn-ranking">Ver Ranking</button>
+        </Link>
       </div>
-    )
+    );
   }
 }
 
 // const mapStateToProps = (state) => ({});
 
 // const mapDispatchToProps = {};
-// export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default Game;
