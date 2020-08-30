@@ -1,6 +1,4 @@
-/* não aplicado */
-
-/* links */
+/* não aplicado
 
 a {
   color: #0ce3ac;
@@ -12,17 +10,12 @@ a:hover {
   color: red;
 }
 
-/* input */
-
 input {
   padding: 10px 15px;
   color: #464545;
   border-radius: 4px;
   outline: 0.1px dashed #383E4E;
 }
-
-
-/* botões */
 
 .big-btn {
   color: white;
@@ -33,18 +26,14 @@ input {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   background-color: #222;
   padding: 10px 15px;
-  
 }
 
 .big-btn:active {
   transition: all 0.15s ease 0s;
 }
 
-/* posicionamento */
-
 .main {
   display: flex;
-  /* background-color: honeydew; */
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
@@ -64,8 +53,6 @@ input {
   width: 300px;
 }
 
-/* header */
-
 .header {
   background-color: #262a35;
   position: absolute;
@@ -80,7 +67,6 @@ input {
   left: 0;
 }
 
-/* botões de alternativas de resposta */
 .ans-btn {
   display:inline-block;
   padding: 1em 5em;
@@ -105,3 +91,5 @@ input {
 .ans-btn:focus{
   background-color:#33ff9971;
 }
+
+*/
