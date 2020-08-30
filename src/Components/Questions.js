@@ -46,6 +46,8 @@ Questions.propTypes = {
         picture: propTypes.string,
       },
     ],
+    category: propTypes.string,
+    questions: propTypes.string,
     token: propTypes.string,
   }).isRequired,
 };
