@@ -22,7 +22,7 @@ class Game extends Component {
           <button>Voltar ao Início</button>
         </Link>
         {/* implementar contador para pegar perguntas pelo index */}
-        <button data-testid="btn-next">Próxima pergunta</button>
+        <button onClick={} data-testid="btn-next">Próxima pergunta</button>
         <Link to="/feedback">
           <button>Feedback</button>
         </Link>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { connet } from 'react-redux';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import Timer from '../Components/Timer';
 
 class Question extends React.Component {
   // state = {};
@@ -22,9 +23,9 @@ const mapStateToProps = (state) => ({
   KEY: state.REDUCER,
 });
 
-const mapDispatchToProps = () => ({
- 
+export default connect(mapStateToProps)(Question);
 
-})
 
-export default connect (mapStateToProps, mapDispatchToProps)(Question);
+Question.propTypes = {
+  perguntas: propTypes.string.isRequired,
+};

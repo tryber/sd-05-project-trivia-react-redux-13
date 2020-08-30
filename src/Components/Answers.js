@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 export class Answers extends Component {
   render() {
     const Change = () => {
-      let right = document.getElementById('right');
-      let wrong = document.querySelectorAll('#wrong');
+      const right = document.getElementById('right');
+      const wrong = document.querySelectorAll('#wrong');
       right.style.border = '3px solid rgb(6, 240, 15)';
       wrong.forEach((element) => (element.style.border = '3px solid rgb(255, 0, 0)'));
     };
