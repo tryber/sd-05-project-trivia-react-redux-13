@@ -46,8 +46,10 @@ Questions.propTypes = {
         picture: propTypes.string,
       },
     ],
+    category: propTypes.string,
+    question: propTypes.string,
     token: propTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);
