@@ -8,7 +8,9 @@ export class Answers extends Component {
       const right = document.getElementById('right');
       const wrong = document.querySelectorAll('#wrong');
       right.style.border = '3px solid rgb(6, 240, 15)';
-      wrong.forEach((element) => (element.style.border = '3px solid rgb(255, 0, 0)'));
+      wrong.forEach((element) => {
+        element.style.border = '3px solid rgb(255, 0, 0)';
+      });
     };
     return (
       <div>
