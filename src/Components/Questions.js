@@ -47,7 +47,7 @@ Questions.propTypes = {
       },
     ],
     token: propTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

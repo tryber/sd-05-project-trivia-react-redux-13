@@ -25,7 +25,7 @@ const mapDispatchToProps = {};
 
 Answers.propTypes = {
   correctAnswer: propTypes.string.isRequired,
-  incorrectAnswers: propTypes.instanceOf(Array),
+  incorrectAnswers: propTypes.instanceOf(Array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Answers);

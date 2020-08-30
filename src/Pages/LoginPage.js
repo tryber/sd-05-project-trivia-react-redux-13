@@ -58,7 +58,7 @@ LoginPage.propTypes = {
       },
     ],
     token: propTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
