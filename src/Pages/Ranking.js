@@ -8,14 +8,12 @@ export default class Ranking extends Component {
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
-        {localState.ranking.map((player, index) => {
-          return (
-            <div>
-              <p data-testid={`player-name-${index}`}>Nome: {player.name}</p>
-              <p data-testid={`player-score-${index}`}>Pontuação: {player.score}</p>
-            </div>
-          );
-        })}
+        {localState.ranking.map((player, index) => (
+          <div>
+            <p data-testid={`player-name-${index}`}>Nome: {player.name}</p>
+            <p data-testid={`player-score-${index}`}>Pontuação: {player.score}</p>
+          </div>
+        ))};
         <Link to="/">
           <button data-testid="btn-go-home">Jogar Novamente</button>
         </Link>

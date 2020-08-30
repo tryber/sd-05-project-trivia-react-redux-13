@@ -7,9 +7,10 @@ export class Answers extends Component {
     return (
       <div>
         <button data-testid="correct-answer">{this.props.correctAnswer}</button>
-        {this.props.incorrectAnswers.map((answer, index) => {
-          return <button data-testid={`wrong-answer-${index}`}>{answer}</button>;
-        })}
+        {this.props.incorrectAnswers.map((answer, index) => (
+          <button data-testid={`wrong-answer-${index}`}>{answer}</button>
+        ))}
+        ;
       </div>
     );
   }
@@ -20,14 +21,11 @@ const mapStateToProps = (state) => ({
   incorrectAnswers: state.triviaReducer.data[0][0].incorrect_answers,
 });
 
-const mapDispatchToProps = {
-
-};
+const mapDispatchToProps = {};
 
 Answers.propTypes = {
   correctAnswer: propTypes.string.isRequired,
   incorrectAnswers: propTypes.instanceOf(Array),
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Answers);

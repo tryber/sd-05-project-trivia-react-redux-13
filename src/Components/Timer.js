@@ -16,8 +16,7 @@ export default class Timer extends Component {
         this.setState({
           seconds: this.state.seconds - 1,
         });
-      }
-      else {
+      } else {
         const timer = document.getElementById('timer');
         timer.style.color = 'tomato';
         timer.style.fontWeight = '700';
