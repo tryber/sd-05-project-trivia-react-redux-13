@@ -4,11 +4,21 @@ import { connect } from 'react-redux';
 
 export class Answers extends Component {
   render() {
+    const Change = () => {
+      let right = document.getElementById('right');
+      let wrong = document.querySelectorAll('#wrong');
+      right.style.border = '3px solid rgb(6, 240, 15)';
+      wrong.forEach((element) => (element.style.border = '3px solid rgb(255, 0, 0)'));
+    };
     return (
       <div>
-        <button data-testid="correct-answer">{this.props.correctAnswer}</button>
+        <button onClick={Change} id="right" data-testid="correct-answer">
+          {this.props.correctAnswer}
+        </button>
         {this.props.incorrectAnswers.map((answer, index) => (
-          <button data-testid={`wrong-answer-${index}`}>{answer}</button>
+          <button onClick={Change} id="wrong" data-testid={`wrong-answer-${index}`}>
+            {answer}
+          </button>
         ))}
         ;
       </div>
