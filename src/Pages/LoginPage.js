@@ -38,7 +38,7 @@ LoginPage.propTypes = {
   fetchAPI: propTypes.func.isRequired,
   fetchKey: propTypes.func.isRequired,
   token: propTypes.string.isRequired,
-  data: propTypes.object.isRequired,
+  data: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

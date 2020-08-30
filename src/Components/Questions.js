@@ -47,7 +47,7 @@ Questions.propTypes = {
       },
     ],
     category: propTypes.string,
-    questions: propTypes.string,
+    question: propTypes.string,
     token: propTypes.string,
   }).isRequired,
 };
