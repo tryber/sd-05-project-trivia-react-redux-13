@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   data: [],
   index: 0,
   status: false,
-  };
+};
 
 function triviaReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
