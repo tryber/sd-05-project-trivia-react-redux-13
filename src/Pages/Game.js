@@ -41,7 +41,7 @@ const mapDispatchToProps = {
   pergunta: question,
 };
 
-Game.protoTypes = {
+Game.propTypes = {
   pergunta: propTypes.func.isRequired,
-}
+};
 export default connect(null, mapDispatchToProps)(Game);

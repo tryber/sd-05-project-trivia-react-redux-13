@@ -8,11 +8,11 @@ import {
 } from '../actions/requestAPI';
 
 const INITIAL_STATE = {
-    isFetching: false,
-    token: '',
-    data: [],
-    index: 0,
-    status: false,
+  isFetching: false,
+  token: '',
+  data: [],
+  index: 0,
+  status: false,
   };
 
 function triviaReducer(state = INITIAL_STATE, action) {
