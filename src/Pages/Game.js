@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Timer from '../Components/Timer';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import Header from '../Components/Header';
 import Questions from '../Components/Questions';
 import Answers from '../Components/Answers';
+import { question } from '../redux/actions/requestAPI';
 
 class Game extends Component {
   render() {
+    const { pergunta } = this.props;
     return (
       <div >
         <Header />
@@ -22,7 +24,7 @@ class Game extends Component {
           <button>Voltar ao Início</button>
         </Link>
         {/* implementar contador para pegar perguntas pelo index */}
-        <button data-testid="btn-next">Próxima pergunta</button>
+        <button onClick={pergunta} data-testid="btn-next">Próxima pergunta</button>
         <Link to="/feedback">
           <button>Feedback</button>
         </Link>
@@ -34,7 +36,7 @@ class Game extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({});
-
-// const mapDispatchToProps = {};
-export default Game;
+const mapDispatchToProps = {
+  pergunta: question,
+};
+export default connect(null, mapDispatchToProps)(Game);

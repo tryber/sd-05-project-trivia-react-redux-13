@@ -5,12 +5,18 @@ export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
 export const FAILED_TRIVIA = 'FAILED_TRIVIA';
 export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
+export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const STATUS = 'STATUS';
 
 const requestToken = () => ({ type: REQUEST_TOKEN });
 const receivedToken = (token) => ({ type: RECEIVED_TOKEN, token });
 
 const requestTrivia = () => ({ type: REQUEST_TRIVIA });
 const receivedTrivia = (data) => ({ type: RECEIVED_TRIVIA, data });
+
+export const question = () => ({ type: NEXT_QUESTION });
+export const status = () => ({ type: STATUS });
+
 
 export function fetchToken() {
   return async (dispatch) => {

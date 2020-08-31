@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import '../App.css';
+import { status } from '../redux/actions/requestAPI';
 
 export class Answers extends Component {
   render() {
-    const Change = () => {
-      const right = document.getElementById('right');
-      // const wrong = document.querySelectorAll('#wrong');
-      right.style.border = '3px solid rgb(6, 240, 15)';
-      // wrong.forEach((element) => {
-      // //   element.style.border = '3px solid rgb(255, 0, 0)';
-      // });
-    };
+    const { data, Change, status, index } = this.props;
+
     return (
       <div>
-        <button onClick={Change} id="right" data-testid="correct-answer">
-          {this.props.correctAnswer}
+        <button onClick={Change} className={status ? 'right' : null} data-testid="correct-answer">
+          {data[index].correct_answer}
         </button>
-        {this.props.incorrectAnswers.map((answer, index) => (
-          <button onClick={Change} id="wrong" data-testid={`wrong-answer-${index}`}>
+        {data[index].incorrect_answers.map((answer, index) => (
+          <button
+            onClick={Change}
+            className={status ? 'wrong' : null}
+            data-testid={`wrong-answer-${index}`}
+          >
             {answer}
           </button>
         ))}
@@ -29,11 +29,14 @@ export class Answers extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  correctAnswer: state.triviaReducer.data[0][0].correct_answer,
-  incorrectAnswers: state.triviaReducer.data[0][0].incorrect_answers,
+  data: state.triviaReducer.data[0],
+  index: state.triviaReducer.index,
+  status: state.triviaReducer.status,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  Change: status,
+};
 
 Answers.propTypes = {
   correctAnswer: propTypes.string.isRequired,

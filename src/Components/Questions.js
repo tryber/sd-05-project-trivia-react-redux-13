@@ -4,29 +4,22 @@ import { connect } from 'react-redux';
 
 class Questions extends Component {
   render() {
-    const { data } = this.props;
-    console.log(data);
+    const { data, index } = this.props;
     return (
       <div>
-        <p data-testid="question-category">
-          {this.props.data.category}
-        </p>
-        <p data-testid="question-text">
-          {this.props.data.question}
-        </p>
+        <p data-testid="question-category">{data[index].category}</p>
+        <p data-testid="question-text">{data[index].question}</p>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.triviaReducer.data[0][0],
+  data: state.triviaReducer.data[0],
+  index: state.triviaReducer.index,
 });
 
-const mapDispatchToProps = {
-
-};
-
+const mapDispatchToProps = {};
 
 Questions.propTypes = {
   data: propTypes.shape({
