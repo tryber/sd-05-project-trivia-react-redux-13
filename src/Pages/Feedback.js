@@ -4,6 +4,27 @@ import propTypes from 'prop-types';
 import { cryptoEmail } from '../Components/Login';
 // import { connect } from 'react-redux';
 
+function playerRankings(localState) {
+  const newPlayer = {
+    name: localState.player.name,
+    score: localState.player.score,
+    // picture: avatar,
+  };
+
+  if (!localStorage.getItem('ranking')) {
+    localStorage.setItem('ranking', JSON.stringify([newPlayer]));
+    return;
+  }
+  const rankings = [...JSON.parse(localStorage.getItem('ranking')), newPlayer];
+  localStorage.setItem('ranking', JSON.stringify(rankings));
+}
+
+const buttonRanking = (localState) => (
+  <button data-testid="btn-ranking" onClick={() => playerRankings(localState)}>
+    Ver Ranking
+  </button>
+);
+
 export default class Feedback extends Component {
   render() {
     const localState = JSON.parse(localStorage.getItem('state'));
@@ -26,9 +47,7 @@ export default class Feedback extends Component {
         </p>
         <p data-testid="feedback-total-score">Pontuação final: {player.score}</p>
         <p data-testid="feedback-total-question">Perguntas acertadas:{player.assertions}</p>
-        <Link to="/ranking">
-          <button data-testid="btn-ranking">Ver Ranking</button>
-        </Link>
+        <Link to="/ranking">{buttonRanking(localState)}</Link>
         <Link to="/game">
           <button data-testid="btn-play-again">Jogar Novamente</button>
         </Link>
