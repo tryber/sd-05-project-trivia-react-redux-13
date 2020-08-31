@@ -7,8 +7,7 @@ import {
   STATUS,
 } from '../actions/requestAPI';
 
-const INITIAL_STATE = 
-  {
+const INITIAL_STATE = {
     isFetching: false,
     token: '',
     data: [],

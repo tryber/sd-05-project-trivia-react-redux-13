@@ -45,6 +45,7 @@ Questions.propTypes = {
     question: propTypes.string,
     token: propTypes.string,
   }).isRequired,
+  index: propTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

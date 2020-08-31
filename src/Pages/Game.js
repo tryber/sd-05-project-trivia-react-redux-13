@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Timer from '../Components/Timer';
 import { connect } from 'react-redux';
+import Timer from '../Components/Timer';
 import Header from '../Components/Header';
 import Questions from '../Components/Questions';
 import Answers from '../Components/Answers';
@@ -39,4 +40,8 @@ class Game extends Component {
 const mapDispatchToProps = {
   pergunta: question,
 };
+
+Game.protoTypes = {
+  pergunta: propTypes.func.isRequired,
+}
 export default connect(null, mapDispatchToProps)(Game);

@@ -6,18 +6,18 @@ import { status } from '../redux/actions/requestAPI';
 
 export class Answers extends Component {
   render() {
-    const { data, Change, status, index } = this.props;
+    const { data, Change, borda, index } = this.props;
 
     return (
       <div>
-        <button onClick={Change} className={status ? 'right' : null} data-testid="correct-answer">
+        <button onClick={Change} className={borda ? 'right' : null} data-testid="correct-answer">
           {data[index].correct_answer}
         </button>
-        {data[index].incorrect_answers.map((answer, index) => (
+        {data[index].incorrect_answers.map((answer, i) => (
           <button
             onClick={Change}
-            className={status ? 'wrong' : null}
-            data-testid={`wrong-answer-${index}`}
+            className={borda ? 'wrong' : null}
+            data-testid={`wrong-answer-${i}`}
           >
             {answer}
           </button>
@@ -31,7 +31,7 @@ export class Answers extends Component {
 const mapStateToProps = (state) => ({
   data: state.triviaReducer.data[0],
   index: state.triviaReducer.index,
-  status: state.triviaReducer.status,
+  borda: state.triviaReducer.status,
 });
 
 const mapDispatchToProps = {
@@ -39,8 +39,10 @@ const mapDispatchToProps = {
 };
 
 Answers.propTypes = {
-  correctAnswer: propTypes.string.isRequired,
-  incorrectAnswers: propTypes.instanceOf(Array).isRequired,
+  index: propTypes.number.isRequired,
+  Change: propTypes.func.isRequired,
+  borda: propTypes.bool.isRequired,
+  data: propTypes.instanceOf(Array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Answers);
