@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 class Questions extends Component {
   render() {
+    const { data } = this.props;
+    console.log(data);
     return (
       <div>
         <p data-testid="question-category">

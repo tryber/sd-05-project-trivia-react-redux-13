@@ -5,11 +5,18 @@ class Header extends Component {
   render() {
     const state = JSON.parse(localStorage.getItem('state'));
     return (
-      <div data-testid="header-player-name">
-        <img data-testid="header-profile-picture" src={`https://www.gravatar.com/avatar/${cryptoEmail}`} alt="" />
-        <h2>Jogador: {state.player.name}</h2>
+      <div>
+        <div>
+          <img
+            data-testid="header-profile-picture"
+            src={`https://www.gravatar.com/avatar/${cryptoEmail}`}
+            alt=""
+          />
+        </div>
 
-        <h2 data-testid="header-score">Pontos: {state.player.score}</h2>
+        <div data-testid="header-player-name">Jogador: {state.player.name}</div>
+
+        <div data-testid="header-score">Pontos: {0}</div>
       </div>
     );
   }

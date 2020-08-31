@@ -33,12 +33,12 @@ class Login extends Component {
       ranking: [
         {
           name: this.state.name,
-          score: 10,
+          score: 0,
           picture: 'https://www.gravatar.com/avatar/any',
         },
         {
           name: this.state.name,
-          score: 15,
+          score: 0,
           picture: 'https://www.gravatar.com/avatar/any2',
         },
       ],

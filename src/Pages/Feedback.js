@@ -51,7 +51,7 @@ export default class Feedback extends Component {
         <Link to="/game">
           <button data-testid="btn-play-again">Jogar Novamente</button>
         </Link>
-        <Link to="/feedback">Feedback</Link>
+        {/* <Link to="/feedback">Feedback</Link> */}
       </div>
     );
   }
