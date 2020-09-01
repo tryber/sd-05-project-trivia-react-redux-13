@@ -20,7 +20,7 @@ export class Answers extends Component {
       gravatarEmail,
       score,
       assertions,
-    }
+    };
     localStorage.setItem('state', JSON.stringify(newStorage));
   }
 
@@ -34,7 +34,7 @@ export class Answers extends Component {
         <div>
           <button
             disabled={disabled}
-            onClick={() => { Change(); handleClick(); this.saveStorage() }}
+            onClick={() => { Change(); handleClick(); this.saveStorage(); }}
             className={borda ? 'right' : null}
             data-testid="correct-answer"
           >
@@ -79,6 +79,7 @@ Answers.propTypes = {
   assertions: propTypes.number.isRequired,
   index: propTypes.number.isRequired,
   Change: propTypes.func.isRequired,
+  Score: propTypes.func.isRequired,
   borda: propTypes.bool.isRequired,
   data: propTypes.instanceOf(Array).isRequired,
   disabled: propTypes.bool.isRequired,

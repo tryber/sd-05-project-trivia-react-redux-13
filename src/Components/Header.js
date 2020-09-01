@@ -38,4 +38,5 @@ export default connect(mapStateToProps)(Header);
 Header.propTypes = {
   name: propTypes.string.isRequired,
   cryptoEmail: propTypes.string.isRequired,
+  score: propTypes.string.isRequired,
 };

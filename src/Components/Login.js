@@ -14,7 +14,6 @@ class Login extends Component {
       email: '',
       name: '',
     };
-
   }
 
   hashGravatar() {
@@ -39,7 +38,7 @@ class Login extends Component {
   clickPlay() {
     const { fetchKey, addPlayerInfo } = this.props;
     const { email, name } = this.state;
-    console.log(email,name)
+    console.log(email, name);
     addPlayerInfo(email, name);
     getToken().then((value) => {
       fetchKey(value);
