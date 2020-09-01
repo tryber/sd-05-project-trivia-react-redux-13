@@ -38,9 +38,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Link to="/settings" data-testid="btn-settings">
-          Settings
-        </Link>
+        <Link to="/settings" data-testid="btn-settings">Settings</Link>
         <form>
           <label htmlFor="email">Email do Gravatar: </label>
           <input
