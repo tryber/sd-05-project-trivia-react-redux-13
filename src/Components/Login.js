@@ -31,7 +31,7 @@ class Login extends Component {
       gravatarEmail: email,
       score,
       assertions,
-    }
+    };
     localStorage.setItem('state', JSON.stringify(newStorage));
   }
 
@@ -97,8 +97,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
-  name: propTypes.string.isRequired,
-  gravatarEmail: propTypes.string.isRequired,
   score: propTypes.number.isRequired,
   assertions: propTypes.number.isRequired,
   addPlayerInfo: propTypes.func.isRequired,
