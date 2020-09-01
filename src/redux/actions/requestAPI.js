@@ -1,4 +1,4 @@
-import { getToken } from '../../services/requests';
+import getToken from '../../services/requests';
 
 export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
 export const RECEIVED_TRIVIA = 'RECEIVED_TRIVIA';
