@@ -29,22 +29,11 @@ class Header extends Component {
 const mapStateToProps = (state) => ({
   name: state.usuarioReducer.name,
   cryptoEmail: state.triviaReducer.hash,
-})
+});
 
 export default connect(mapStateToProps)(Header);
 
-// // import { fetchGravatar } from '../actions/requestGravatar.js';
-
-// export default class Header extends Component {
-//   componentDidMoutn() {
-//     // const { fetchGravatar } = this.props;
-//     // fetchGravatar();
-//   }
-//   render() {
-//     // const { profilePicture } = this.props;
-//     return <img src={`${profilePicture}`} alt="" />;
-//   }
-// }
-// // const mapDispatchToProps = (dispatch) => ({
-// //   fetchGravatar: (result) => dispatch(fetchGravatar(result)),
-// // });
+Header.propTypes = {
+  name: propTypes.string.isRequired,
+  cryptoEmail: propTypes.string.isRequired,
+};

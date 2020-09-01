@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Ranking extends Component {
   render() {
@@ -34,3 +35,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Ranking);
+
+Ranking.propTypes = {
+  cryptoEmail: PropTypes.string.isRequired,
+};

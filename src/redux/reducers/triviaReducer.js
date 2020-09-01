@@ -34,7 +34,7 @@ function triviaReducer(state = INITIAL_STATE, action) {
     case STORE_HASH:
       return {
         ...state,
-        hash: action.hash
+        hash: action.hash,
       };
     default:
       return state;

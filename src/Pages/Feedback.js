@@ -39,7 +39,8 @@ const mapStateToProps = (state) => ({
 });
 
 Feedback.propTypes = {
-  totalQuestion: propTypes.number.isRequired,
+  assertions: propTypes.number.isRequired,
+  addPlayer: propTypes.objectOf(propTypes.string.isRequired).isRequired,
   score: propTypes.number.isRequired,
 };
 

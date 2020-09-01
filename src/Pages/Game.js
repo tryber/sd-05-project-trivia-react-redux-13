@@ -36,7 +36,7 @@ class Game extends Component {
   }
 
   respondePergunta() {
-    this.setState({ status: true })
+    this.setState({ status: true });
   }
 
   render() {
@@ -52,7 +52,6 @@ class Game extends Component {
         <div>
           <Answers disabled={status} handleClick={this.respondePergunta} />
         </div>
-        {/* implementar contador para pegar perguntas pelo index */}
         {status && (
           <button
             onClick={() => {

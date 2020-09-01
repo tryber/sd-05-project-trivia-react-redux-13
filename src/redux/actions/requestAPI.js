@@ -21,7 +21,7 @@ export const status = () => ({ type: STATUS });
 export const storeHash = (hash) => ({
   type: STORE_HASH,
   hash,
-})
+});
 
 export function fetchToken() {
   return async (dispatch) => {
