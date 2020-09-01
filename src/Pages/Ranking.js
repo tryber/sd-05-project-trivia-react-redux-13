@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { cryptoEmail } from '../Components/Login';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-export default class Ranking extends Component {
+class Ranking extends Component {
   render() {
     const localState = JSON.parse(localStorage.getItem('state'));
     const ranking = localState.ranking.sort((a, b) => b.score - a.score);
+    const { cryptoEmail } = this.props;
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
@@ -29,8 +29,8 @@ export default class Ranking extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  cryptoEmail: state.triviaReducer.hash,
+});
 
-// const mapDispatchToProps = {};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
+export default connect(mapStateToProps)(Ranking);

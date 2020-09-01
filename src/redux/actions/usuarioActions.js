@@ -1,11 +1,13 @@
-// export const ADD_PLAYER = 'ADD_PLAYER';
-// export const ADD_PTS = 'ADD_PTS';
+export const ADD_PLAYER = 'ADD_PLAYER';
+export const COUNT_SCORE = 'COUNT_SCORE';
 
-// const addPlayer = () => ({
-//   type: ADD_PLAYER,
-// });
+export const addPlayer = (email, name) => ({
+  type: ADD_PLAYER,
+  email,
+  name,
+});
 
-// const addPts = (pontos) => ({
-//   type: ADD_PTS,
-//   pontos,
-// });
+export const countScore = (score) => ({
+  type: COUNT_SCORE,
+  score,
+});

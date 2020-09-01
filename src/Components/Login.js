@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import CryptoJs from 'crypto-js';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-const MD5 = require('crypto-js/md5');
-
-const email = [];
-export const cryptoEmail = MD5(email).toString();
+import { receivedToken, storeHash } from '../redux/actions/requestAPI';
+import { addPlayer } from '../redux/actions/usuarioActions';
+import { getToken } from '../services/requests';
 
 class Login extends Component {
   constructor(props) {
@@ -17,36 +17,12 @@ class Login extends Component {
       disabled: true,
     };
 
+
     this.handleChange = this.handleChange.bind(this);
-    this.requests = this.requests.bind(this);
+//  this.requests = this.requests.bind(this);
   }
-
-  requests() {
-    email.push(this.state.email);
-    const state = {
-      player: {
-        name: this.state.name,
-        assertions: 0,
-        score: 0,
-        gravatarEmail: this.state.email,
-      },
-      ranking: [
-        {
-          name: this.state.name,
-          score: 0,
-          picture: 'https://www.gravatar.com/avatar/any',
-        },
-        {
-          name: this.state.name,
-          score: 0,
-          picture: 'https://www.gravatar.com/avatar/any2',
-        },
-      ],
-      token: this.props.token,
-    };
-    localStorage.setItem('state', JSON.stringify(state));
-  }
-
+  
+  
   handleChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
@@ -57,6 +33,25 @@ class Login extends Component {
     } else {
       this.setState({ disabled: true });
     }
+  }
+
+  hashGravatar() {
+    const { email } = this.state;
+    const { storeHash } = this.props;
+    const hash = CryptoJs.MD5(email).toString();
+    storeHash(hash);
+  }
+
+  clickPlay() {
+    const { fetchKey, addPlayer } = this.props;
+    const { email, name } = this.state;
+    addPlayer(email, name);
+    getToken()
+      .then((value) => {
+        fetchKey(value);
+        localStorage.setItem('token', value.token);
+    });
+    this.hashGravatar();
   }
 
   render() {
@@ -83,7 +78,7 @@ class Login extends Component {
             data-testid="input-player-name"
           />
           <Link to="/game">
-            <button data-testid="btn-play" disabled={this.state.disabled} onClick={this.requests}>
+            <button data-testid="btn-play" disabled={this.state.disabled} onClick={() => this.clickPlay()}>
               JOGAR!
             </button>
           </Link>
@@ -93,8 +88,18 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.triviaReducer.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchKey: (value) => dispatch(receivedToken(value.token)),
+  addPlayer: (name, email) => dispatch(addPlayer(name, email)),
+  storeHash: (hash) => dispatch(storeHash(hash)),
+});
+
 Login.propTypes = {
   token: propTypes.string.isRequired,
 };
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

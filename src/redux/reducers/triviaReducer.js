@@ -5,6 +5,7 @@ import {
   RECEIVED_TRIVIA,
   NEXT_QUESTION,
   STATUS,
+  STORE_HASH,
 } from '../actions/requestAPI';
 
 const INITIAL_STATE = {
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   data: [],
   index: 0,
   status: false,
+  hash: '',
 };
 
 function triviaReducer(state = INITIAL_STATE, action) {
@@ -24,11 +26,16 @@ function triviaReducer(state = INITIAL_STATE, action) {
     case REQUEST_TRIVIA:
       return { ...state, isFetching: true };
     case RECEIVED_TRIVIA:
-      return { ...state, isFetching: false, data: [action.data] };
+      return { ...state, isFetching: false, data: action.data };
     case NEXT_QUESTION:
       return { ...state, index: state.index + 1, status: false };
     case STATUS:
       return { ...state, status: true };
+    case STORE_HASH:
+      return {
+        ...state,
+        hash: action.hash
+      };
     default:
       return state;
   }

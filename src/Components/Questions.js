@@ -5,17 +5,22 @@ import { connect } from 'react-redux';
 class Questions extends Component {
   render() {
     const { data, index } = this.props;
-    return (
-      <div>
-        <p data-testid="question-category">{data[index].category}</p>
-        <p data-testid="question-text">{data[index].question}</p>
-      </div>
-    );
+    if (data.length > 0) {
+      return index < 5 ? (
+        <div>
+          <p data-testid="question-category">{data[index].category}</p>
+          <p data-testid="question-text">{data[index].question}</p>
+        </div>
+      ) : (
+        <span />
+      );
+    }
+    return null;
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.triviaReducer.data[0],
+  data: state.triviaReducer.data,
   index: state.triviaReducer.index,
 });
 

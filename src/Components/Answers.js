@@ -1,35 +1,46 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import '../App.css';
 import { status } from '../redux/actions/requestAPI';
+import { Redirect } from 'react-router-dom';
+import '../App.css';
 
 export class Answers extends Component {
   render() {
-    const { data, Change, borda, index } = this.props;
-
-    return (
-      <div>
-        <button onClick={Change} className={borda ? 'right' : null} data-testid="correct-answer">
-          {data[index].correct_answer}
-        </button>
-        {data[index].incorrect_answers.map((answer, i) => (
+    const { data, Change, borda, index, disabled, handleClick } = this.props;
+    if(index === 5) {
+      return <Redirect to="/feedback" />
+    }
+    if (data.length > 0) {
+      return (
+        <div>
           <button
-            onClick={Change}
-            className={borda ? 'wrong' : null}
-            data-testid={`wrong-answer-${i}`}
+            disabled={disabled}
+            onClick={() => { Change(); handleClick()}}
+            className={borda ? 'right' : null}
+            data-testid="correct-answer"
           >
-            {answer}
+            {data[index].correct_answer}
           </button>
-        ))}
-        ;
-      </div>
-    );
+          {data[index].incorrect_answers.map((answer, i) => (
+            <button
+              disabled={disabled}
+              onClick={() => {Change(); handleClick()}}
+              className={borda ? 'wrong' : null}
+              data-testid={`wrong-answer-${i}`}
+            >
+              {answer}
+            </button>
+          ))}
+        </div>
+      );
+    }
+    return null;
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.triviaReducer.data[0],
+  data: state.triviaReducer.data,
   index: state.triviaReducer.index,
   borda: state.triviaReducer.status,
 });

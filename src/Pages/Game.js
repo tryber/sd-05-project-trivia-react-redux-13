@@ -2,30 +2,68 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Timer from '../Components/Timer';
 import Header from '../Components/Header';
 import Questions from '../Components/Questions';
 import Answers from '../Components/Answers';
 import { question } from '../redux/actions/requestAPI';
 
 class Game extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      seconds: 30,
+      status: false,
+    };
+    this.respondePergunta = this.respondePergunta.bind(this);
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      if (this.state.seconds > 0) {
+        this.setState({
+          seconds: this.state.seconds - 1,
+        });
+      } else {
+        const timer = document.getElementById('timer');
+        this.setState({
+          status: true,
+        });
+        timer.style.color = 'tomato';
+        timer.style.fontWeight = '700';
+      }
+    }, 1000);
+  }
+
+  respondePergunta() {
+    this.setState({ status: true })
+  }
+
   render() {
     const { pergunta } = this.props;
+    const { status, seconds } = this.state;
     return (
-      <div >
+      <div>
         <Header />
         <div>
           <Questions />
-          <Timer />
+          <p id="timer">Tempo restante: {seconds} segundos</p>
         </div>
         <div>
-          <Answers />
+          <Answers disabled={status} handleClick={this.respondePergunta} />
         </div>
-        <Link to="/">
-          <button>Voltar ao Início</button>
-        </Link>
         {/* implementar contador para pegar perguntas pelo index */}
-        <button onClick={pergunta} data-testid="btn-next">Próxima pergunta</button>
+        {status && (
+          <button
+            onClick={() => {
+              pergunta();
+              this.setState({ status: false });
+            }}
+            data-testid="btn-next"
+          >
+            Próxima pergunta
+          </button>
+        )}
         <Link to="/feedback">
           <button>Feedback</button>
         </Link>

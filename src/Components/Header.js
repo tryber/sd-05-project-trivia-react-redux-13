@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
-import { cryptoEmail } from '../Components/Login';
+import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
-    const state = JSON.parse(localStorage.getItem('state'));
+    const { name, cryptoEmail } = this.props;
+
     return (
       <div>
         <div>
           <img
             data-testid="header-profile-picture"
             src={`https://www.gravatar.com/avatar/${cryptoEmail}`}
-            alt=""
+            alt={`${name}`}
           />
         </div>
-
-        <div data-testid="header-player-name">Jogador: {state.player.name}</div>
-
-        <div data-testid="header-score">Pontos: {0}</div>
+        <div>
+          Jogador:
+          <span data-testid="header-player-name">{name}</span>
+        </div>
+        <div>
+          Pontos: <span data-testid="header-score">0</span>
+        </div>
       </div>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  name: state.usuarioReducer.name,
+  cryptoEmail: state.triviaReducer.hash,
+})
+
+export default connect(mapStateToProps)(Header);
 
 // // import { fetchGravatar } from '../actions/requestGravatar.js';
-// // import { connect } from 'react-redux';
 
 // export default class Header extends Component {
 //   componentDidMoutn() {

@@ -1,6 +1,11 @@
-import { ADD_PLAYER, ADD_PTS } from '../actions/usuarioActions';
+import { ADD_PLAYER, COUNT_SCORE } from '../actions/usuarioActions';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {
+  name: '',
+  email: '',
+  score: 0,
+  assertions: 0,
+};
 
 const usuarioReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -9,11 +14,14 @@ const usuarioReducer = (state = INITIAL_STATE, action) => {
         ...state,
         name: action.name,
         email: action.email,
+        assertions: 0,
+        score: 0,
       };
-    case ADD_PTS:
+    case COUNT_SCORE:
       return {
         ...state,
-        pontos: action.pontos,
+        score: action.score + state.score,
+        assertions: state.assertions + 1,
       };
     default:
       return state;
