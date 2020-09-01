@@ -16,7 +16,7 @@ export class Answers extends Component {
         <div>
           <button
             disabled={disabled}
-            onClick={ () => { Change(); handleClick(); } }
+            onClick={() => { Change(); handleClick(); }}
             className={borda ? 'right' : null}
             data-testid="correct-answer"
           >
@@ -25,7 +25,7 @@ export class Answers extends Component {
           {data[index].incorrect_answers.map((answer, i) => (
             <button
               disabled={disabled}
-              onClick={ () => {Change(); handleClick(); } }
+              onClick={() => { Change(); handleClick(); }}
               className={borda ? 'wrong' : null}
               data-testid={`wrong-answer-${i}`}
             >

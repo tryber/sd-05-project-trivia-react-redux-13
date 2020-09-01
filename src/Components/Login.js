@@ -21,7 +21,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
 //  this.requests = this.requests.bind(this);
   }
-   
+
   handleChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
@@ -73,12 +73,11 @@ class Login extends Component {
             data-testid="input-player-name"
           />
           <Link to="/game">
-            <button 
+            <button
               data-testid="btn-play"
               disabled={this.state.disabled}
-              onClick={() => this.clickPlay()}>
-              JOGAR!
-            </button>
+              onClick={() => this.clickPlay()}
+            >JOGAR!</button>
           </Link>
         </form>
       </div>

@@ -59,9 +59,7 @@ class Game extends Component {
               this.setState({ status: false });
             }}
             data-testid="btn-next"
-          >
-            Próxima pergunta
-          </button>
+          >Próxima pergunta</ button>
         )}
         <Link to="/feedback">
           <button>Feedback</button>
