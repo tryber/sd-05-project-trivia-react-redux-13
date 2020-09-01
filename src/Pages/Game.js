@@ -56,7 +56,7 @@ class Game extends Component {
           <button
             onClick={() => {
               pergunta();
-              this.setState({ status: false });
+              this.setState({ status: false, seconds: 30 });
             }}
             data-testid="btn-next"
           >Próxima pergunta</button>

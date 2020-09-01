@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    const { name, cryptoEmail } = this.props;
+    const { name, cryptoEmail, score } = this.props;
 
     return (
       <div>
@@ -20,7 +20,7 @@ class Header extends Component {
           <span data-testid="header-player-name">{name}</span>
         </div>
         <div>
-          Pontos: <span data-testid="header-score">0</span>
+          Pontos: <span data-testid="header-score">{score}</span>
         </div>
       </div>
     );
@@ -29,6 +29,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   name: state.usuarioReducer.name,
+  score: state.usuarioReducer.score,
   cryptoEmail: state.triviaReducer.hash,
 });
 

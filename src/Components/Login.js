@@ -10,11 +10,11 @@ import getToken from '../services/requests';
 class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: '',
       name: '',
     };
+
   }
 
   hashGravatar() {
@@ -24,15 +24,29 @@ class Login extends Component {
     storeHashFunc(hash);
   }
 
+  saveStorage() {
+    const { score, assertions } = this.props;
+    const { name, email } = this.state;
+    const newStorage = {
+      name,
+      gravatarEmail: email,
+      score,
+      assertions,
+    }
+    localStorage.setItem('state', JSON.stringify(newStorage));
+  }
+
   clickPlay() {
     const { fetchKey, addPlayerInfo } = this.props;
     const { email, name } = this.state;
+    console.log(email,name)
     addPlayerInfo(email, name);
     getToken().then((value) => {
       fetchKey(value);
       localStorage.setItem('token', value.token);
     });
     this.hashGravatar();
+    this.saveStorage();
   }
 
   render() {
@@ -70,6 +84,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  name: state.usuarioReducer.name,
+  gravatarEmail: state.usuarioReducer.email,
+  score: state.usuarioReducer.score,
+  assertions: state.usuarioReducer.assertions,
   token: state.triviaReducer.token,
 });
 
@@ -80,6 +98,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Login.propTypes = {
+  name: propTypes.string.isRequired,
+  gravatarEmail: propTypes.string.isRequired,
+  score: propTypes.number.isRequired,
+  assertions: propTypes.number.isRequired,
   addPlayerInfo: propTypes.func.isRequired,
   fetchKey: propTypes.func.isRequired,
   storeHashFunc: propTypes.func.isRequired,
