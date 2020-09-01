@@ -14,24 +14,7 @@ class Login extends Component {
     this.state = {
       email: '',
       name: '',
-      disabled: true,
     };
-
-
-    this.handleChange = this.handleChange.bind(this);
-//  this.requests = this.requests.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-
-    if (this.state.name && this.state.email) {
-      this.setState({ disabled: false });
-    } else {
-      this.setState({ disabled: true });
-    }
   }
 
   hashGravatar() {
@@ -45,39 +28,42 @@ class Login extends Component {
     const { fetchKey, addPlayerInfo } = this.props;
     const { email, name } = this.state;
     addPlayerInfo(email, name);
-    getToken()
-      .then((value) => {
-        fetchKey(value);
-        localStorage.setItem('token', value.token);
-      });
+    getToken().then((value) => {
+      fetchKey(value);
+      localStorage.setItem('token', value.token);
+    });
     this.hashGravatar();
   }
 
   render() {
     return (
       <div>
-        <Link to="/settings" data-testid="btn-settings">Settings</Link>
+        <Link to="/settings" data-testid="btn-settings">
+          Settings
+        </Link>
         <form>
           <label htmlFor="email">Email do Gravatar: </label>
           <input
             value={this.state.email}
-            onChange={this.handleChange}
+            onChange={(event) => this.setState({ email: event.target.value })}
             type="email"
             data-testid="input-gravatar-email"
           />
           <label htmlFor="name">Nome do Jogador: </label>
           <input
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={(event) => this.setState({ name: event.target.value })}
             type="text"
             data-testid="input-player-name"
           />
           <Link to="/game">
             <button
               data-testid="btn-play"
-              disabled={this.state.disabled}
+              disabled={!(this.state.email && this.state.name)}
               onClick={() => this.clickPlay()}
-            >JOGAR!</button>
+            >
+              JOGAR!
+            </button>
           </Link>
         </form>
       </div>
