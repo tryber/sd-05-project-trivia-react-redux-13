@@ -16,10 +16,12 @@ export class Answers extends Component {
     const { name, gravatarEmail, score, assertions, Score } = this.props;
     Score(30);
     const newStorage = {
-      name,
-      gravatarEmail,
-      score,
-      assertions,
+      player: {
+        name,
+        gravatarEmail,
+        score: score + 30,
+        assertions: assertions + 1,
+      },
     };
     localStorage.setItem('state', JSON.stringify(newStorage));
   }
@@ -34,7 +36,11 @@ export class Answers extends Component {
         <div>
           <button
             disabled={disabled}
-            onClick={() => { Change(); handleClick(); this.saveStorage(); }}
+            onClick={() => {
+              Change();
+              handleClick();
+              this.saveStorage();
+            }}
             className={borda ? 'right' : null}
             data-testid="correct-answer"
           >
@@ -42,13 +48,10 @@ export class Answers extends Component {
           </button>
           {data[index].incorrect_answers.map((answer, i) => (
             <button
-              disabled={disabled}
-              onClick={() => { Change(); handleClick(); }}
+              disabled={disabled} onClick={() => { Change(); handleClick(); }}
               className={borda ? 'wrong' : null}
               data-testid={`wrong-answer-${i}`}
-            >
-              {answer}
-            </button>
+            >{answer}</button>
           ))}
         </div>
       );

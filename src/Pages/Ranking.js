@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { playAgain } from '../redux/actions/usuarioActions';
 
 class Ranking extends Component {
-  componentDidMount() {
-  }
+  componentDidMount() {}
   render() {
     const localState = JSON.parse(localStorage.getItem('ranking'));
     const ranking = localState.length > 0 ? localState.sort((a, b) => b.score - a.score) : [];
@@ -21,12 +20,20 @@ class Ranking extends Component {
               src={`https://www.gravatar.com/avatar/${cryptoEmail}`}
               alt=""
             />
-            <p data-testid={`player-name-${index}`}>Nome: {player.name}</p>
-            <p data-testid={`player-score-${index}`}>Pontuação: {player.score}</p>
+            <p>
+              {' '}
+              Nome: <span data-testid={`player-name-${index}`}>{player.name}</span>
+            </p>
+            <p>
+              {' '}
+              Pontuação: <span data-testid={`player-score-${index}`}>{player.score}</span>
+            </p>
           </div>
         ))}
         <Link to="/">
-          <button onClick={playAgain2} data-testid="btn-go-home">Jogar Novamente</button>
+          <button onClick={playAgain2} data-testid="btn-go-home">
+            Jogar Novamente
+          </button>
         </Link>
       </div>
     );

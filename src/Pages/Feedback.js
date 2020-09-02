@@ -22,8 +22,8 @@ class Feedback extends Component {
       <div>
         <Header />
         <p data-testid="feedback-text">{assertions >= 3 ? 'Mandou bem!' : 'Podia ser melhor...'}</p>
-        <p data-testid="feedback-total-score">Pontuação final: {score}</p>
-        <p data-testid="feedback-total-question">Perguntas acertadas:{assertions}</p>
+        <p>Pontuação final: <span data-testid="feedback-total-score">{score}</span></p>
+        <p>Perguntas acertadas:<span data-testid="feedback-total-question">{assertions}</span></p>
         <Link to="/ranking">
           <button data-testid="btn-ranking">Ver Ranking</button>
         </Link>
