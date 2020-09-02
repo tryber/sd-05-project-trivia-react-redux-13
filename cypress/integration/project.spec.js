@@ -327,7 +327,7 @@ describe('A pessoa jogadora deve iniciar um jogo', () => {
 
 // ranking
 
-describe('Deve existir um botão para ir ao início', () => {
+describe.only('Deve existir um botão para ir ao início', () => {
   it('volta para a tela inicial', () => {
     cy.visit('http://localhost:3000/');
     cy.clearLocalStorage();

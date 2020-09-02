@@ -26,7 +26,7 @@ class Ranking extends Component {
           </div>
         ))}
         <Link to="/">
-          <button onClick={playAgain2()} data-testid="btn-go-home">Jogar Novamente</button>
+          <button onClick={playAgain2} data-testid="btn-go-home">Jogar Novamente</button>
         </Link>
       </div>
     );
