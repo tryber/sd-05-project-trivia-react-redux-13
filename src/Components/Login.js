@@ -1,66 +1,80 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import CryptoJs from 'crypto-js';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-const MD5 = require('crypto-js/md5');
-
-const email = [];
-export const cryptoEmail = MD5(email).toString();
+import { receivedToken, storeHash } from '../redux/actions/requestAPI';
+import { addPlayer } from '../redux/actions/usuarioActions';
+import getToken from '../services/requests';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: '',
       name: '',
-      disabled: true,
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.requests = this.requests.bind(this);
   }
 
-  requests() {
-    email.push(this.state.email);
+  hashGravatar() {
+    const { email } = this.state;
+    const { storeHashFunc } = this.props;
+    const hash = CryptoJs.MD5(email).toString();
+    storeHashFunc(hash);
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value,
+  saveStorage() {
+    const { score, assertions } = this.props;
+    const { name, email } = this.state;
+    const newStorage = {
+      player: {
+        name,
+        gravatarEmail: email,
+        score,
+        assertions,
+      },
+    };
+    localStorage.setItem('state', JSON.stringify(newStorage));
+  }
+
+  clickPlay() {
+    const { fetchKey, addPlayerInfo } = this.props;
+    const { email, name } = this.state;
+    console.log(email, name);
+    addPlayerInfo(email, name);
+    getToken().then((value) => {
+      fetchKey(value);
+      localStorage.setItem('token', value.token);
     });
-
-    if (this.state.name && this.state.email) {
-      this.setState({ disabled: false });
-    } else {
-      this.setState({ disabled: true });
-    }
+    this.hashGravatar();
+    this.saveStorage();
   }
 
   render() {
     return (
       <div>
-        <Link to="/settings" data-testid="btn-settings">
-          Settings
-        </Link>
+        <Link to="/settings" data-testid="btn-settings">Settings</Link>
         <form>
           <label htmlFor="email">Email do Gravatar: </label>
           <input
             value={this.state.email}
-            onChange={this.handleChange}
+            onChange={(event) => this.setState({ email: event.target.value })}
             type="email"
-            id="email"
             data-testid="input-gravatar-email"
           />
           <label htmlFor="name">Nome do Jogador: </label>
           <input
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={(event) => this.setState({ name: event.target.value })}
             type="text"
-            id="name"
             data-testid="input-player-name"
           />
           <Link to="/game">
-            <button data-testid="btn-play" disabled={this.state.disabled} onClick={this.requests}>
+            <button
+              data-testid="btn-play"
+              disabled={!(this.state.email && this.state.name)}
+              onClick={() => this.clickPlay()}
+            >
               JOGAR!
             </button>
           </Link>
@@ -70,4 +84,26 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  name: state.usuarioReducer.name,
+  gravatarEmail: state.usuarioReducer.email,
+  score: state.usuarioReducer.score,
+  assertions: state.usuarioReducer.assertions,
+  token: state.triviaReducer.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchKey: (value) => dispatch(receivedToken(value.token)),
+  addPlayerInfo: (name, email) => dispatch(addPlayer(name, email)),
+  storeHashFunc: (hash) => dispatch(storeHash(hash)),
+});
+
+Login.propTypes = {
+  score: propTypes.number.isRequired,
+  assertions: propTypes.number.isRequired,
+  addPlayerInfo: propTypes.func.isRequired,
+  fetchKey: propTypes.func.isRequired,
+  storeHashFunc: propTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

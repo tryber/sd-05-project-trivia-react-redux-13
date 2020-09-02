@@ -1,14 +1,53 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
+import Header from '../Components/Header';
 
-export default class Feedback extends Component {
+class Feedback extends Component {
+  componentDidMount() {
+    console.log(localStorage.getItem('ranking'));
+    const { addPlayer } = this.props;
+    if (!localStorage.getItem('ranking')) {
+      localStorage.setItem('ranking', JSON.stringify([addPlayer]));
+    } else {
+      const rankings = [...JSON.parse(localStorage.getItem('ranking')), addPlayer];
+      localStorage.setItem('ranking', JSON.stringify(rankings));
+    }
+  }
+
   render() {
-    return <div />;
+    const { assertions, score } = this.props;
+    return (
+      <div>
+        <Header />
+        <p data-testid="feedback-text">{assertions >= 3 ? 'Mandou bem!' : 'Podia ser melhor...'}</p>
+        <p>Pontuação final: <span data-testid="feedback-total-score">{score}</span></p>
+        <p>Perguntas acertadas:<span data-testid="feedback-total-question">{assertions}</span></p>
+        <Link to="/ranking">
+          <button data-testid="btn-ranking">Ver Ranking</button>
+        </Link>
+        <Link to="/">
+          <button data-testid="btn-play-again">Jogar Novamente</button>
+        </Link>
+        <Link to="/">
+          <button>Voltar ao Início</button>
+        </Link>
+      </div>
+    );
   }
 }
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  addPlayer: state.usuarioReducer,
+  assertions: state.usuarioReducer.assertions,
+  score: state.usuarioReducer.score,
+});
 
-// const mapDispatchToProps = {};
+Feedback.propTypes = {
+  assertions: propTypes.number.isRequired,
+  addPlayer: propTypes.objectOf(propTypes.string.isRequired).isRequired,
+  score: propTypes.number.isRequired,
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+export default connect(mapStateToProps)(Feedback);

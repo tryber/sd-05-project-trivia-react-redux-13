@@ -1,14 +1,56 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { playAgain } from '../redux/actions/usuarioActions';
 
-export default class Ranking extends Component {
+class Ranking extends Component {
+  componentDidMount() {}
   render() {
-    return <div />;
+    const localState = JSON.parse(localStorage.getItem('ranking'));
+    const ranking = localState.length > 0 ? localState.sort((a, b) => b.score - a.score) : [];
+    const { cryptoEmail, playAgain2 } = this.props;
+    return (
+      <div>
+        <h1 data-testid="ranking-title">Ranking</h1>
+        {ranking.map((player, index) => (
+          <div>
+            <img
+              data-testid="header-profile-picture"
+              src={`https://www.gravatar.com/avatar/${cryptoEmail}`}
+              alt=""
+            />
+            <p>
+              {' '}
+              Nome: <span data-testid={`player-name-${index}`}>{player.name}</span>
+            </p>
+            <p>
+              {' '}
+              Pontuação: <span data-testid={`player-score-${index}`}>{player.score}</span>
+            </p>
+          </div>
+        ))}
+        <Link to="/">
+          <button onClick={playAgain2} data-testid="btn-go-home">
+            Jogar Novamente
+          </button>
+        </Link>
+      </div>
+    );
   }
 }
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  cryptoEmail: state.triviaReducer.hash,
+});
 
-// const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  playAgain2: () => dispatch(playAgain()),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
+
+Ranking.propTypes = {
+  cryptoEmail: PropTypes.string.isRequired,
+  playAgain2: PropTypes.func.isRequired,
+};

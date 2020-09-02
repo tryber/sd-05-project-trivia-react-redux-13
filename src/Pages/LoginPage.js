@@ -12,6 +12,9 @@ class LoginPage extends Component {
   }
 
   render() {
+    if (!this.props.data) {
+      return <div>Carregando...</div>;
+    }
     return (
       <section>
         <Login />
@@ -22,6 +25,7 @@ class LoginPage extends Component {
 
 const mapStateToProps = (state) => ({
   token: state.triviaReducer.token,
+  data: state.triviaReducer.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -34,6 +38,7 @@ LoginPage.propTypes = {
   fetchAPI: propTypes.func.isRequired,
   fetchKey: propTypes.func.isRequired,
   token: propTypes.string.isRequired,
+  data: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
