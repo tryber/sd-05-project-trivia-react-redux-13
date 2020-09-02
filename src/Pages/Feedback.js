@@ -5,13 +5,19 @@ import propTypes from 'prop-types';
 import Header from '../Components/Header';
 
 class Feedback extends Component {
-  render() {
-    const { assertions, score, addPlayer } = this.props;
+  componentDidMount() {
+    console.log(localStorage.getItem('ranking'));
+    const { addPlayer } = this.props;
     if (!localStorage.getItem('ranking')) {
       localStorage.setItem('ranking', JSON.stringify([addPlayer]));
+    } else {
+      const rankings = [...JSON.parse(localStorage.getItem('ranking')), addPlayer];
+      localStorage.setItem('ranking', JSON.stringify(rankings));
     }
-    const rankings = [...JSON.parse(localStorage.getItem('ranking')), addPlayer];
-    localStorage.setItem('ranking', JSON.stringify(rankings));
+  }
+
+  render() {
+    const { assertions, score } = this.props;
     return (
       <div>
         <Header />
@@ -33,7 +39,7 @@ class Feedback extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  addPlayer: state.usuarioReducer.addPlayer,
+  addPlayer: state.usuarioReducer,
   assertions: state.usuarioReducer.assertions,
   score: state.usuarioReducer.score,
 });

@@ -6,7 +6,11 @@ import {
   NEXT_QUESTION,
   STATUS,
   STORE_HASH,
-} from '../actions/requestAPI';
+ } from '../actions/requestAPI';
+
+import {
+  PLAY_AGAIN,
+ } from '../actions/usuarioActions';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -29,6 +33,8 @@ function triviaReducer(state = INITIAL_STATE, action) {
       return { ...state, isFetching: false, data: action.data };
     case NEXT_QUESTION:
       return { ...state, index: state.index + 1, status: false };
+    case PLAY_AGAIN:
+      return { ...state, index: 0, status: false };
     case STATUS:
       return { ...state, status: true };
     case STORE_HASH:
